@@ -1,0 +1,38 @@
+<h1>Movie Liste</h1>
+
+<div>
+    <table>
+        <tr ng-repeat="movies in movie">
+            <td>{{movies.Filmname}}</td>
+            <td>{{movies.Beschreibung}}</td>
+            <td>{{movies.Regisseur}}</td>
+            <td class="deleteButtonClass" ng-click="deleteMovie(movies.id)">Löschen</td>
+        </tr>
+    </table>
+
+    <button ng-click="openAddNewMovie()">New Club</button><br>
+
+    <div ng-if="displayNewMovieForm" class="openNewForm">
+        <form>
+            <div>Filmname:</div>
+            <input type="text" ng-model="mov.Filmname"><br>
+            <div>Beschreibung:</div>
+            <input type="text" ng-model="mov.Beschreibung"><br>
+            <div>Regisseur:</div>
+            <input type="text" ng-model="mov.Regisseur"><br>
+            <div>
+                <button ng-click="saveNewMovie()">Save</button><br>
+            </div>
+            <button ng-click="seeNewMovie()">Vorschau</button><br>
+            <div ng-if="displayseeNewMovieForm">
+                <table>
+                    <tr>
+                        <td>{{mov.Filmname}}</td>
+                        <td>{{mov.Beschreibung}}</td>
+                        <td>{{mov.Regisseur}}</td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>

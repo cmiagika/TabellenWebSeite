@@ -1,0 +1,43 @@
+<h1>Player Liste</h1>
+<div>
+    <table>
+        <tr ng-repeat="player in play">
+            <td>{{player.name}}</td>
+            <td>{{player.Alter}}</td>
+            <td>{{player.Preis}}</td>
+            <td>{{player.Clubname}}</td>
+            <td class="deleteButtonClass" ng-click="deletePlayer(player.id)">Löschen</td>
+        </tr>
+    </table>
+
+    <button ng-click="openAddNewPlayer()">New Player</button><br>
+
+    <div ng-if="displayNewPlayerForm" class="openNewForm">
+        <form>
+            <div>Name:</div>
+            <input type="text" ng-model="player.name"><br>
+            <div>Alter:</div>
+            <input type="text" ng-model="player.Alter"><br>
+            <div>Preis:</div>
+            <input type="text" ng-model="player.Preis"><br>
+            <div>Fussballclub:</div>
+            <select>
+                <option ng-repeat="player in play" value="{{player.club_id}}">{{player.Clubname}}</option>
+            </select>
+            <div>
+                <button ng-click="saveNewPlayer()">Save</button><br>
+            </div>
+            <button ng-click="seeNewPlayer()">Vorschau</button><br>
+            <div ng-if="displayseeNePlayerForm">
+                <table>
+                    <tr>
+                        <td>{{player.name}}</td>
+                        <td>{{player.Alter}}</td>
+                        <td>{{player.Preis}}</td>
+                        <td>{{player.Clubname}}</td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>

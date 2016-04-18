@@ -1,0 +1,38 @@
+<h1>Clubs Liste</h1>
+
+<div>
+    <table>
+        <tr ng-repeat="club in clubs">
+            <td>{{club.Clubname}}</td>
+            <td>{{club.Stadionname}}</td>
+            <td>{{club.Trainer}}</td>
+            <td class="deleteButtonClass" ng-click="deleteClub(club.id)">Löschen</td>
+        </tr>
+    </table>
+
+    <button ng-click="openAddNewClub()">New Club</button><br>
+
+    <div ng-if="displayNewClubForm" class="openNewForm">
+        <form>
+            <div>Name:</div>
+            <input type="text" ng-model="club.Name"><br>
+            <div>Stadion:</div>
+            <input type="text" ng-model="club.Stadionname"><br>
+            <div>Trainer:</div>
+            <input type="text" ng-model="club.Trainer"><br>
+            <div>
+                <button ng-click="saveNewClub()">Save</button><br>
+            </div>
+            <button ng-click="seeNewClub()">Vorschau</button><br>
+            <div ng-if="displayseeNewClubForm">
+                <table>
+                    <tr>
+                        <td>{{club.Name}}</td>
+                        <td>{{club.Stadionname}}</td>
+                        <td>{{club.Trainer}}</td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
