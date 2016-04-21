@@ -193,15 +193,17 @@ class Api {
 
     function savePlayerToDatabase() {
         if(!isset($_REQUEST['player'])) throw new Exception('Variable player nicht übergeben');
+        if(!isset($_REQUEST['club'])) throw new Exception('Variable club nicht übergeben');
 
         $playerObject = json_decode($_REQUEST['player']);
+        $playerClubObject = json_decode($_REQUEST['club']);
 
         if(!isset($playerObject->name) || !isset($playerObject->Alter) || !isset($playerObject->Preis)) {
             throw new Exception('Variable player nicht richtig initialisiert');
         }
 
-        $statement = $this->conn->prepare("INSERT INTO `spieler` (`name`, `Alter`, `Preis`) VALUES (?, ?, ?)");
-        $statement->bind_param("sii", $playerObject->name, $playerObject->Alter, $playerObject->Preis);
+        $statement = $this->conn->prepare("INSERT INTO `spieler` (`name`, `Alter`, `Preis`, `club_id`) VALUES (?, ?, ?, ?)");
+        $statement->bind_param("siii", $playerObject->name, $playerObject->Alter, $playerObject->Preis, $playerClubObject->id->id);
         $result = $statement->execute();
     }
 

@@ -44,3 +44,6 @@ div {
 .navigationLinks:hover {
     background-color: lightskyblue;
 }
+.view {
+    padding: 10px;
+}

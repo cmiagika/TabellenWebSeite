@@ -17,6 +17,6 @@
     </head>
     <body ng-controller="appCtrl">
         <navigation></navigation>
-        <div ng-view></div>
+        <div class="view"ng-view></div>
     </body>
 </html>

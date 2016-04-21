@@ -15,14 +15,15 @@
             });
         };
 
-        this.addNewPlayerPromise = function(player) {
+        this.addNewPlayerPromise = function(player, club) {
 
             return $http({
                 method: 'GET',
                 url: '/api/Api.php',
                 params: {
                     action: 'setPlayer',
-                    player: JSON.stringify(player)
+                    player: JSON.stringify(player),
+                    club: club
                 }
             });
         };

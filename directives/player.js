@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    function Controller($scope, playerService) {
+    function Controller($scope, playerService, clubsService) {
 
         $scope.displayNewPlayerForm = false;
         $scope.displayseeNewPlayerForm = false;
@@ -20,11 +20,24 @@
             Preis: ''
         };
 
+        $scope.club = {
+            id: '',
+            Clubname: ''
+        };
+
         $scope.play = playerService.getPlayerListPromise().then(
             function successCallback(response) {
                 $scope.play = response.data['player'];
             }, function errorCallback(response) {
                 $scope.play = [];
+            }
+        );
+
+        $scope.clubs = clubsService.getClubListPromise().then(
+            function successCallback(response) {
+                $scope.clubs = response.data['soccer'];
+            }, function errorCallback(response) {
+                $scope.clubs = [];
             }
         );
 
@@ -46,7 +59,8 @@
 
         $scope.saveNewPlayer = function() {
             if (!$scope.player.name == "" && !$scope.player.Alter == "" && $scope.player.Alter == parseInt($scope.player.Alter) && !$scope.player.Preis == "" && $scope.player.Preis == parseInt($scope.player.Preis))  {
-                playerService.addNewPlayerPromise($scope.player).then(
+                console.log($scope.club.id);
+                playerService.addNewPlayerPromise($scope.player, $scope.club).then(
                     function successCallback(response) {
                         $scope.play = response.data['player'];
                         $scope.player = $scope.emptyPlayer;
