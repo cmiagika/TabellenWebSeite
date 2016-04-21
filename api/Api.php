@@ -79,12 +79,12 @@ class Api {
 
         $clubObject = json_decode($_REQUEST['club']);
 
-        if(!isset($clubObject->Name) || !isset($clubObject->Trainer) || !isset($clubObject->Stadionname)) {
+        if(!isset($clubObject->name) || !isset($clubObject->trainer) || !isset($clubObject->stadionname)) {
             throw new Exception('Variable Club nicht richtig initialisiert');
         }
 
-        $statement = $this->conn->prepare("INSERT INTO `fussballclubs` (`Clubname`, `Stadionname`, `Trainer`) VALUES (?, ?, ?)");
-        $statement->bind_param("sss", $clubObject->Name, $clubObject->Stadionname, $clubObject->Trainer);
+        $statement = $this->conn->prepare("INSERT INTO `fussballclubs` (`clubname`, `stadionname`, `trainer`) VALUES (?, ?, ?)");
+        $statement->bind_param("sss", $clubObject->name, $clubObject->stadionname, $clubObject->trainer);
         $result = $statement->execute();
     }
 
@@ -131,12 +131,12 @@ class Api {
 
         $movieObject = json_decode($_REQUEST['mov']);
 
-        if(!isset($movieObject->Filmname) || !isset($movieObject->Beschreibung) || !isset($movieObject->Regisseur)) {
+        if(!isset($movieObject->filmname) || !isset($movieObject->beschreibung) || !isset($movieObject->regisseur)) {
             throw new Exception('Variable mov nicht richtig initialisiert');
         }
 
-        $statement = $this->conn->prepare("INSERT INTO `filme` (`Filmname`, `Beschreibung`, `Regisseur`) VALUES (?, ?, ?)");
-        $statement->bind_param("sss", $movieObject->Filmname, $movieObject->Beschreibung, $movieObject->Regisseur);
+        $statement = $this->conn->prepare("INSERT INTO `filme` (`filmname`, `beschreibung`, `regisseur`) VALUES (?, ?, ?)");
+        $statement->bind_param("sss", $movieObject->filmname, $movieObject->beschreibung, $movieObject->regisseur);
         $result = $statement->execute();
     }
 
@@ -165,12 +165,12 @@ class Api {
             SELECT
                 spieler.id AS id,
                 spieler.name AS name,
-                spieler.alter AS 'Alter',
-                spieler.preis AS Preis,
+                spieler.alter AS 'alter',
+                spieler.preis AS preis,
                 fussballclubs.id AS club_id,
-                fussballclubs.clubname AS Clubname,
-                fussballclubs.stadionname AS Stadionname,
-                fussballclubs.trainer AS Trainer,
+                fussballclubs.clubname AS clubname,
+                fussballclubs.stadionname AS stadionname,
+                fussballclubs.trainer AS trainer,
                 fussballclubs.id AS club_id
             FROM spieler
             LEFT JOIN fussballclubs ON spieler.club_id = fussballclubs.id
@@ -193,17 +193,15 @@ class Api {
 
     function savePlayerToDatabase() {
         if(!isset($_REQUEST['player'])) throw new Exception('Variable player nicht übergeben');
-        if(!isset($_REQUEST['club'])) throw new Exception('Variable club nicht übergeben');
 
         $playerObject = json_decode($_REQUEST['player']);
-        $playerClubObject = json_decode($_REQUEST['club']);
 
-        if(!isset($playerObject->name) || !isset($playerObject->Alter) || !isset($playerObject->Preis)) {
+        if(!isset($playerObject->name) || !isset($playerObject->alter) || !isset($playerObject->preis)) {
             throw new Exception('Variable player nicht richtig initialisiert');
         }
 
-        $statement = $this->conn->prepare("INSERT INTO `spieler` (`name`, `Alter`, `Preis`, `club_id`) VALUES (?, ?, ?, ?)");
-        $statement->bind_param("siii", $playerObject->name, $playerObject->Alter, $playerObject->Preis, $playerClubObject->id->id);
+        $statement = $this->conn->prepare("INSERT INTO `spieler` (`name`, `alter`, `preis`, `club_id`) VALUES (?, ?, ?, ?)");
+        $statement->bind_param("siii", $playerObject->name, $playerObject->alter, $playerObject->preis, $playerObject->club->id);
         $result = $statement->execute();
     }
 

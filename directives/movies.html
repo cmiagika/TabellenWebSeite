@@ -2,10 +2,16 @@
 
 <div>
     <table>
+        <tr>
+            <th class="sortButtonClass" ng-click="moviesSort()">Filmname</th>
+            <th class="sortButtonClass" ng-click="moviesSort()">Beschreibung</th>
+            <th class="sortButtonClass" ng-click="moviesSort()">Regisseur</th>
+            <th class="sortButtonClass"></th>
+        </tr>
         <tr ng-repeat="movies in movie">
-            <td>{{movies.Filmname}}</td>
-            <td>{{movies.Beschreibung}}</td>
-            <td>{{movies.Regisseur}}</td>
+            <td>{{movies.filmname}}</td>
+            <td>{{movies.beschreibung}}</td>
+            <td>{{movies.regisseur}}</td>
             <td class="deleteButtonClass" ng-click="deleteMovie(movies.id)">Löschen</td>
         </tr>
     </table>
@@ -15,11 +21,11 @@
     <div ng-if="displayNewMovieForm" class="openNewForm">
         <form>
             <div>Filmname:</div>
-            <input type="text" ng-model="mov.Filmname"><br>
+            <input type="text" ng-model="mov.filmname"><br>
             <div>Beschreibung:</div>
-            <input type="text" ng-model="mov.Beschreibung"><br>
+            <input type="text" ng-model="mov.beschreibung"><br>
             <div>Regisseur:</div>
-            <input type="text" ng-model="mov.Regisseur"><br>
+            <input type="text" ng-model="mov.regisseur"><br>
             <div>
                 <button ng-click="saveNewMovie()">Save</button><br>
             </div>
@@ -27,9 +33,9 @@
             <div ng-if="displayseeNewMovieForm">
                 <table>
                     <tr>
-                        <td>{{mov.Filmname}}</td>
-                        <td>{{mov.Beschreibung}}</td>
-                        <td>{{mov.Regisseur}}</td>
+                        <td>{{mov.filmname}}</td>
+                        <td>{{mov.beschreibung}}</td>
+                        <td>{{mov.regisseur}}</td>
                     </tr>
                 </table>
             </div>

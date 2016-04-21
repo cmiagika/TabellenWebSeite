@@ -8,21 +8,18 @@
 
         $scope.emptyPlayer = {
             id: '',
-            Name: '',
-            Alter: '',
-            Preis: ''
+            name: '',
+            alter: '',
+            preis: '',
+            club: undefined
         };
 
         $scope.player = {
             id: '',
-            Name: '',
-            Alter: '',
-            Preis: ''
-        };
-
-        $scope.club = {
-            id: '',
-            Clubname: ''
+            name: '',
+            alter: '',
+            preis: '',
+            club: undefined
         };
 
         $scope.play = playerService.getPlayerListPromise().then(
@@ -58,16 +55,14 @@
         };
 
         $scope.saveNewPlayer = function() {
-            if (!$scope.player.name == "" && !$scope.player.Alter == "" && $scope.player.Alter == parseInt($scope.player.Alter) && !$scope.player.Preis == "" && $scope.player.Preis == parseInt($scope.player.Preis))  {
-                console.log($scope.club.id);
-                playerService.addNewPlayerPromise($scope.player, $scope.club).then(
+            console.log($scope.player);
+            if (!$scope.player.name == "" && !$scope.player.alter == "" && $scope.player.alter == parseInt($scope.player.alter) && !$scope.player.preis == "" && $scope.player.preis == parseInt($scope.player.preis))  {
+                playerService.addNewPlayerPromise($scope.player).then(
                     function successCallback(response) {
                         $scope.play = response.data['player'];
                         _.each($scope.emptyPlayer,function(val,key) {
                             $scope.player[key] = val;
-                            console.log(val,key,$scope.player[key]);
                         });
-                        console.log($scope.player);
                         $scope.displayNewPlayerForm = false;
                     }, function errorCallback(response) {
                         console.log(":,(");

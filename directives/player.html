@@ -1,11 +1,18 @@
 <h1>Player Liste</h1>
 <div>
     <table>
+        <tr>
+            <th class="sortButtonClass" ng-click="playerSort()">Name</th>
+            <th class="sortButtonClass" ng-click="playerSort()">Alter</th>
+            <th class="sortButtonClass" ng-click="playerSort()">Preis</th>
+            <th class="sortButtonClass" ng-click="playerSort()">Clubname</th>
+            <th class="sortButtonClass"></th>
+        </tr>
         <tr ng-repeat="player in play">
             <td>{{player.name}}</td>
-            <td>{{player.Alter}}</td>
-            <td>{{player.Preis}}</td>
-            <td>{{player.Clubname}}</td>
+            <td>{{player.alter}}</td>
+            <td>{{player.preis}}</td>
+            <td>{{player.clubname}}</td>
             <td class="deleteButtonClass" ng-click="deletePlayer(player.id)">Löschen</td>
         </tr>
     </table>
@@ -17,11 +24,11 @@
             <div>Name:</div>
             <input type="text" ng-model="player.name"><br>
             <div>Alter:</div>
-            <input type="text" ng-model="player.Alter"><br>
+            <input type="text" ng-model="player.alter"><br>
             <div>Preis:</div>
-            <input type="text" ng-model="player.Preis"><br>
+            <input type="text" ng-model="player.preis"><br>
             <div>Fussballclub:</div>
-            <select ng-options="player as player.Clubname for player in clubs" ng-model="club.id">
+            <select ng-options="club as club.clubname for club in clubs track by club.id" ng-model="player.club">
                 <!--<option ng-repeat="player in play" value="{{player.club_id}}">{{player.Clubname}}</option>-->
             </select>
             <div>
@@ -32,9 +39,9 @@
                 <table>
                     <tr>
                         <td>{{player.name}}</td>
-                        <td>{{player.Alter}}</td>
-                        <td>{{player.Preis}}</td>
-                        <td>{{club.id.Clubname}}</td>
+                        <td>{{player.alter}}</td>
+                        <td>{{player.preis}}</td>
+                        <td>{{club.id.clubname}}</td>
                     </tr>
                 </table>
             </div>

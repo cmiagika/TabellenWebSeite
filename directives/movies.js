@@ -6,16 +6,16 @@
         $scope.displayNewMovieForm = false;
         $scope.displayseeNewMovieForm = false;
 
-        $scope.emptymov = {
-            Filmname: '',
-            Beschreibung: '',
-            Regisseur: ''
+        $scope.emptyMov = {
+            filmname: '',
+            beschreibung: '',
+            regisseur: ''
         };
 
         $scope.mov = {
-            Filmname: '',
-            Beschreibung: '',
-            Regisseur: ''
+            filmname: '',
+            beschreibung: '',
+            regisseur: ''
         };
 
         $scope.openAddNewMovie = function(){
@@ -43,11 +43,13 @@
         );
 
         $scope.saveNewMovie = function() {
-            if (!$scope.mov.Filmname == "" && !$scope.mov.Beschreibung == "" && !$scope.mov.Regisseur == "") {
+            if (!$scope.mov.filmname == "" && !$scope.mov.beschreibung == "" && !$scope.mov.regisseur == "") {
                 movieService.addNewMoviePromise($scope.mov).then(
                     function successCallback(response) {
                         $scope.movie = response.data['movies'];
-                        $scope.mov = $scope.emptymov;
+                        _.each($scope.emptyMov,function(val,key) {
+                            $scope.mov[key] = val;
+                        });
                         $scope.displayNewMovieForm = false;
                     }, function errorCallback(response) {
                         console.log(":,(");

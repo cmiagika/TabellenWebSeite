@@ -8,16 +8,16 @@
 
         $scope.emptyClub = {
             id: '',
-            Name: '',
-            Stadionname: '',
-            Trainer: ''
+            name: '',
+            stadionname: '',
+            trainer: ''
         };
 
         $scope.club = {
             id: '',
-            Name: '',
-            Stadionname: '',
-            Trainer: ''
+            name: '',
+            stadionname: '',
+            trainer: ''
         };
 
         $scope.clubs = clubsService.getClubListPromise().then(
@@ -45,11 +45,13 @@
         };
 
         $scope.saveNewClub = function() {
-            if (!$scope.club.Name == "" && !$scope.club.Stadionname == "" && !$scope.club.Trainer == "") {
+            if (!$scope.club.name == "" && !$scope.club.stadionname == "" && !$scope.club.trainer == "") {
             clubsService.addNewClubPromise($scope.club).then(
                 function successCallback(response) {
                     $scope.clubs = response.data['soccer'];
-                    $scope.club = $scope.emptyClub;
+                    _.each($scope.emptyClub,function(val,key) {
+                        $scope.club[key] = val;
+                    });
                     $scope.displayNewClubForm = false;
                 }, function errorCallback(response) {
                     console.log(":,(");
