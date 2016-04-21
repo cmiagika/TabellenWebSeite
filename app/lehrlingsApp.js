@@ -1,6 +1,6 @@
 (function () {
     "use strict";
-    var app = angular.module('lehrlingsApp', ['ngRoute']);
+    var app = angular.module('lehrlingsApp', ['ngRoute', 'ngAnimate']);
 
     app.controller('appCtrl', function ($scope) {
         return undefined;

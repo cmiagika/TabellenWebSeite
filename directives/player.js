@@ -23,8 +23,9 @@
         };
 
         $scope.play = playerService.getPlayerListPromise().then(
-            function successCallback(response) {
-                $scope.play = response.data['player'];
+            function successCallback(response, rawScopePlay) {
+                /*$scope.play*/rawScopePlay = response.data['player'];
+                console.log(rawScopePlay)//Da chunt bug zum sortingService wo sortierig statt findet.
             }, function errorCallback(response) {
                 $scope.play = [];
             }

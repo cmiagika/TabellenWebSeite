@@ -23,6 +23,7 @@
         $scope.clubs = clubsService.getClubListPromise().then(
             function successCallback(response) {
                 $scope.clubs = response.data['soccer'];
+                console.log($scope.clubs)
             }, function errorCallback(response) {
                 $scope.clubs = [];
             }
