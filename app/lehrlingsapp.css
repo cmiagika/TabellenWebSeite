@@ -47,3 +47,7 @@ div {
 .view {
     padding: 10px;
 }
+.sortButtonClass:hover {
+    color: red;
+    background-color: #e6f0ff;
+}
