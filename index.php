@@ -3,6 +3,7 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
+        <script src="node_modules/underscore/underscore.js"></script>
         <script src="app/lehrlingsApp.js"></script>
         <script src="directives/clubs.js"></script>
         <script src="directives/movies.js"></script>

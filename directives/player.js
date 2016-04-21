@@ -63,7 +63,11 @@
                 playerService.addNewPlayerPromise($scope.player, $scope.club).then(
                     function successCallback(response) {
                         $scope.play = response.data['player'];
-                        $scope.player = $scope.emptyPlayer;
+                        _.each($scope.emptyPlayer,function(val,key) {
+                            $scope.player[key] = val;
+                            console.log(val,key,$scope.player[key]);
+                        });
+                        console.log($scope.player);
                         $scope.displayNewPlayerForm = false;
                     }, function errorCallback(response) {
                         console.log(":,(");
